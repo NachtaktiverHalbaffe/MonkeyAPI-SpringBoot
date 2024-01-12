@@ -1,37 +1,47 @@
 {
 	"name": "MonkeyAPI-SpringBoot",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"args": {
-			// Update the VARIANT arg to pick a Java version: 11, 17
-			// Append -bullseye or -buster to pin to an OS version.
-			// Use the -bullseye variants on local arm64/Apple Silicon.
-			"VARIANT": "17-bullseye",
-			// Options
-			"INSTALL_MAVEN": "false",
-			"INSTALL_GRADLE": "false",
-			"NODE_VERSION": "lts/*"
-		}
-	},
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
 			// Set *default* constainer specific settings.json values on container create.
-			"settings": {},
+			"settings": {
+				"sqltools.connections": [
+					{
+						"name": "Container database",
+						"driver": "PostgreSQL",
+						"previewLimit": 50,
+						"server": "localhost",
+						"port": 5432,
+						"database": "monkeyapi",
+						"username": "nachtaktiverhalbaffe",
+						"password": "monkeys_rule_the_world"
+					}
+				],
+				"java.compile.nullAnalysis.mode": "automatic"
+			},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
+				// Java
 				"vscjava.vscode-java-pack",
-				"vmware.vscode-boot-dev-pack",
 				"shengchen.vscode-checkstyle",
 				"redhat.vscode-xml",
-				"developersoapbox.vscode-springboot-snippets"
+				// Spring boot 
+				"vmware.vscode-boot-dev-pack",
+				"developersoapbox.vscode-springboot-snippets",
+				//Postgres
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-pg"
 			]
 		}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
-		8080
+		8080,
+		5432
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "java -version",
