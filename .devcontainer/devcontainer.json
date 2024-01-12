@@ -13,32 +13,28 @@
 			"NODE_VERSION": "lts/*"
 		}
 	},
-
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
 			// Set *default* constainer specific settings.json values on container create.
-			"settings": { 
-			},
-			
+			"settings": {},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"vscjava.vscode-java-pack",
-                "vmware.vscode-boot-dev-pack",
-                "shengchen.vscode-checkstyle",
-                "redhat.vscode-xml",
+				"vmware.vscode-boot-dev-pack",
+				"shengchen.vscode-checkstyle",
+				"redhat.vscode-xml",
 				"developersoapbox.vscode-springboot-snippets"
 			]
 		}
 	},
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
+	"forwardPorts": [
+		8080
+	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "java -version",
-
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
 }
