@@ -21,7 +21,8 @@
 						"password": "monkeys_rule_the_world"
 					}
 				],
-				"java.compile.nullAnalysis.mode": "automatic"
+				"java.compile.nullAnalysis.mode": "automatic",
+				"java.configuration.updateBuildConfiguration": "automatic"
 			},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
