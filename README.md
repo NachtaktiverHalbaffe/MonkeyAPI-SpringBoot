@@ -25,6 +25,7 @@ In future, there could be some added usecases like randomly generating monkeys e
 
 # Roadmap
   - [ ]  Core Rest API
+  - [ ]  Testing
   - [ ]  External API as datasource
   - [ ]  Image as property
   - [ ]  Documentation generation

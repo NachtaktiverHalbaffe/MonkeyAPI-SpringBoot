@@ -3,6 +3,7 @@ package com.nachtaktiverhalbaffe.monkeyapi.domain;
 import java.util.List;
 import java.util.Map;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,9 +26,7 @@ import lombok.NoArgsConstructor;
 public class Species {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "species_id_sequence")
-    private Long id;
-
+    @Column(length = 50)
     private String name;
 
     @ElementCollection(fetch = FetchType.EAGER)

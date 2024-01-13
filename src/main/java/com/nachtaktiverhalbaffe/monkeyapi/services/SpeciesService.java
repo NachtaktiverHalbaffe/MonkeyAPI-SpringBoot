@@ -3,24 +3,27 @@ package com.nachtaktiverhalbaffe.monkeyapi.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.nachtaktiverhalbaffe.monkeyapi.domain.Species;
 
 public interface SpeciesService {
 
-    public void createSpecies(Species species);
+    public Species createSpecies(Species species);
 
-    public List<Species> getAllSpecies();
+    public List<Species> getAll();
 
-    public Optional<Species> getSpeciesbyName(String name);
+    public Page<Species> getAll(Pageable pageable);
 
-    public Optional<Species> getSpeciesById(Long id);
+    public Optional<Species> getByName(String name);
 
-    public void updateSpecies(Species species);
+    public Species update(Species species);
 
-    public void deleteSpeciesById(Long id);
+    public void deleteByName(String name);
 
-    public void deleteSpeciesByName(String name);
+    public void delete(Species species);
 
-    public void deleteSpecies(Species species);
+    public boolean exists(String name);
 
 }

@@ -20,8 +20,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SpeciesDto {
 
-    private Long id;
-
     private String name;
 
     private Map<String, String> taxonomy;

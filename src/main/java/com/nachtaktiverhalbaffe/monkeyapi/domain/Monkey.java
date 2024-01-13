@@ -36,6 +36,6 @@ public class Monkey {
     private byte[] imageData;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "species_id")
+    @JoinColumn(name = "species_name")
     private Species species;
 }
