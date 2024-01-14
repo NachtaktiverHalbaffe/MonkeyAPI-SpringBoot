@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.nachtaktiverhalbaffe.monkeyapi.domain.Species;
 
+@Service
 public interface SpeciesService {
 
     public Species createSpecies(Species species);

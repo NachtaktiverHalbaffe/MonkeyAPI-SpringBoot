@@ -3,6 +3,8 @@ package com.nachtaktiverhalbaffe.monkeyapi.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,10 +32,7 @@ public class SpeciesServiceImpl implements SpeciesService {
 
     @Override
     public List<Species> getAll() {
-        List<Species> result = new ArrayList<>();
-        this.repository.findAll().forEach(element -> result.add(element));
-
-        return result;
+        return StreamSupport.stream(this.repository.findAll().spliterator(), false).collect(Collectors.toList());
     }
 
     @Override
@@ -72,7 +71,6 @@ public class SpeciesServiceImpl implements SpeciesService {
 
     @Override
     public boolean exists(String name) {
-        // TODO Auto-generated method stub
         return this.repository.existsByName(name);
     }
 
