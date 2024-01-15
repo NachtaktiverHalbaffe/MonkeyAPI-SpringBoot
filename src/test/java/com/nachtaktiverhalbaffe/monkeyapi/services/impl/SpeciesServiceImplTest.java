@@ -9,17 +9,21 @@ import java.util.Optional;
 import java.util.Spliterator;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.nachtaktiverhalbaffe.monkeyapi.TestDataSpecies;
+import com.nachtaktiverhalbaffe.monkeyapi.TestData;
+import com.nachtaktiverhalbaffe.monkeyapi.config.ApiKeys;
 import com.nachtaktiverhalbaffe.monkeyapi.domain.Species;
 import com.nachtaktiverhalbaffe.monkeyapi.repositories.SpeciesRepository;
 
@@ -29,10 +33,13 @@ public class SpeciesServiceImplTest {
     @Mock
     private SpeciesRepository mockRepository;
 
+    @Mock
+    private ApiKeys mockAnimalsAPIConfig = new ApiKeys();
+
     @InjectMocks
     private SpeciesServiceImpl serviceUnderTest;
 
-    private Species testSpecies = TestDataSpecies.createTestSpecies();
+    private Species testSpecies = TestData.createTestSpecies();
 
     @Test
     public void testCreateSpecies() {
@@ -82,12 +89,29 @@ public class SpeciesServiceImplTest {
     }
 
     @Test
+    public void testGetByNameWithAPIFetching() {
+        Optional<Species> speciesOptional = Mockito.mock(Optional.class);
+        Mockito.when(speciesOptional.isPresent()).thenReturn(false);
+        Mockito.when(mockRepository.findByName(Mockito.any(String.class))).thenReturn(speciesOptional);
+        Mockito.when(mockAnimalsAPIConfig.getAnimalsApi()).thenReturn("9oNX8SJL0T/3hvfIxr1Q7Q==S7hYKbxkRWY0txqs");
+
+        Optional<Species> result = serviceUnderTest.getByName("Cheetah");
+
+        Assertions.assertThat(result).isPresent();
+        Assertions.assertThat(result.get().getTaxonomy()).isNotEmpty();
+        Assertions.assertThat(result.get().getLocations()).isNotEmpty();
+        Assertions.assertThat(result.get().getCharacteristics()).isNotEmpty();
+        Assertions.assertThat(result.get().getName()).isEqualTo(testSpecies.getName());
+    }
+
+    @Test
     public void testGetByNameFails() {
         Optional<Species> speciesOptional = Mockito.mock(Optional.class);
         Mockito.when(speciesOptional.isPresent()).thenReturn(false);
         Mockito.when(mockRepository.findByName(Mockito.any(String.class))).thenReturn(speciesOptional);
+        Mockito.when(mockAnimalsAPIConfig.getAnimalsApi()).thenReturn("9oNX8SJL0T/3hvfIxr1Q7Q==S7hYKbxkRWY0txqs");
 
-        Optional<Species> result = serviceUnderTest.getByName("Cheetah");
+        Optional<Species> result = serviceUnderTest.getByName("asfdasfasdf");
 
         Assertions.assertThat(result).isNotPresent();
 

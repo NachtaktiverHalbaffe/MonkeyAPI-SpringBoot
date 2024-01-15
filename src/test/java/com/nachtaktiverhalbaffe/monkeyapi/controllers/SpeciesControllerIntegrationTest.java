@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.Optional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nachtaktiverhalbaffe.monkeyapi.TestDataSpecies;
+import com.nachtaktiverhalbaffe.monkeyapi.TestData;
 import com.nachtaktiverhalbaffe.monkeyapi.domain.Species;
 import com.nachtaktiverhalbaffe.monkeyapi.domain.dto.SpeciesDto;
 import com.nachtaktiverhalbaffe.monkeyapi.mapper.Mapper;
@@ -48,8 +48,8 @@ public class SpeciesControllerIntegrationTest {
 
         @BeforeEach
         public void init() {
-                testSpecies = TestDataSpecies.createTestSpecies();
-                testSpeciesDto = TestDataSpecies.createTestSpeciesDto();
+                testSpecies = TestData.createTestSpecies();
+                testSpeciesDto = TestData.createTestSpeciesDto();
                 Mockito.when(mockMapper.mapTo(Mockito.any(Species.class))).thenReturn(testSpeciesDto);
                 Mockito.when(mockMapper.mapFrom(Mockito.any(SpeciesDto.class))).thenReturn(testSpecies);
         }

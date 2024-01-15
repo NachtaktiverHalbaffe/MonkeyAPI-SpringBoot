@@ -60,7 +60,16 @@ public class SpeciesController {
         } else {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+    }
 
+    @PutMapping
+    public ResponseEntity<SpeciesDto> updateSpecies(@RequestBody SpeciesDto speciesDto) {
+        if (!this.speciesService.exists(speciesDto.getName())) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Species updatedSpecies = this.speciesService.update(this.speciesMapper.mapFrom(speciesDto));
+        return new ResponseEntity<>(this.speciesMapper.mapTo(updatedSpecies), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "{name}")
@@ -74,15 +83,4 @@ public class SpeciesController {
         this.speciesService.delete(this.speciesMapper.mapFrom(speciesDto));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    @PutMapping
-    public ResponseEntity<SpeciesDto> updateSpecies(@RequestBody SpeciesDto speciesDto) {
-        if (!this.speciesService.exists(speciesDto.getName())) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        Species updatedSpecies = this.speciesService.update(this.speciesMapper.mapFrom(speciesDto));
-        return new ResponseEntity<>(this.speciesMapper.mapTo(updatedSpecies), HttpStatus.OK);
-    }
-
 }
