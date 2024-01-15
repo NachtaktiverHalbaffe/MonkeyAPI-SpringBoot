@@ -1,13 +1,13 @@
 package com.nachtaktiverhalbaffe.monkeyapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -31,7 +31,28 @@ public class Monkey {
 
     private String known_from;
 
-    private String image;
+    private String description;
+
+    private String strength;
+
+    private String weaknesses;
+
+    private int attack;
+
+    private int defense;
+
+    private int specialAttack;
+
+    private int specialDefense;
+
+    private int speed;
+
+    private int healthPoints;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "images_name")
+    @JsonIdentityReference(alwaysAsId = true)
+    private ImageData image;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "species_name")

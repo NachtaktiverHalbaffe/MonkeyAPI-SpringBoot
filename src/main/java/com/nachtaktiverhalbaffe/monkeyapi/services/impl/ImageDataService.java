@@ -34,7 +34,7 @@ public class ImageDataService implements StorageService<ImageData> {
 
     @Transactional
     @Override
-    public boolean storeFile(MultipartFile file) {
+    public Optional<ImageData> storeFile(MultipartFile file) {
         ImageData image = new ImageData();
         try {
             image = ImageData.builder()
@@ -45,11 +45,11 @@ public class ImageDataService implements StorageService<ImageData> {
                     .build();
 
         } catch (IOException e) {
-            return false;
+            return Optional.empty();
         }
 
-        imageDataRepository.save(image);
-        return true;
+        ImageData savedImage = imageDataRepository.save(image);
+        return Optional.of(savedImage);
     }
 
     @Override

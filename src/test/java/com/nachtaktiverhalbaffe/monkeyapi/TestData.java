@@ -4,14 +4,13 @@ import java.util.List;
 import java.util.Map;
 import static java.util.Map.entry;
 
+import com.nachtaktiverhalbaffe.monkeyapi.domain.ImageData;
+import com.nachtaktiverhalbaffe.monkeyapi.domain.Monkey;
 import com.nachtaktiverhalbaffe.monkeyapi.domain.Species;
+import com.nachtaktiverhalbaffe.monkeyapi.domain.dto.MonkeyDto;
 import com.nachtaktiverhalbaffe.monkeyapi.domain.dto.SpeciesDto;
 
-public class TestDataSpecies {
-
-        private TestDataSpecies() {
-
-        }
+public class TestData {
 
         public static Species createTestSpecies() {
                 return Species.builder()
@@ -92,6 +91,55 @@ public class TestDataSpecies {
                                                 entry("genus", "Acinonyx"),
                                                 entry("scientific_name", "Acinonyx jubatus")))
                                 .locations(List.of("Africa", "Asia", "Eurasia"))
+                                .build();
+        }
+
+        public static ImageData createTestImageData() {
+                return ImageData.builder()
+                                .fileSize(232423l)
+                                .name("392.png")
+                                .width(198)
+                                .heigt(292)
+                                .type("image/png")
+                                .build();
+        }
+
+        public static Monkey createTestMonkey() {
+                return Monkey.builder()
+                                .id(152L)
+                                .name("Panferno")
+                                .known_from("Pokemon")
+                                .description("Dieses mächtige Pokémon hat ein erhabenes Antlitz. Im Kampf hüllt es sich in Flammen und seine Bewegungen gleichen eine Tanz – ein wahrhaft unvergesslicher Anblick!")
+                                .strength("Offensive")
+                                .weaknesses("Wasser")
+                                .attack(191)
+                                .defense(132)
+                                .specialAttack(191)
+                                .specialDefense(132)
+                                .speed(198)
+                                .healthPoints(262)
+                                .image(createTestImageData())
+                                .species(createTestSpecies())
+                                .build();
+        }
+
+        public static MonkeyDto createTestMonkeyDto() {
+                return MonkeyDto.builder()
+                                .id(152L)
+                                .name("Panferno")
+                                .known_from("Pokemon")
+                                .description("Dieses mächtige Pokémon hat ein erhabenes Antlitz. Im Kampf hüllt es sich in Flammen und seine Bewegungen gleichen eine Tanz – ein wahrhaft unvergesslicher Anblick!")
+                                .strength("Offensive")
+                                .weaknesses("Wasser")
+                                .attack(191)
+                                .defense(132)
+                                .special_attack(191)
+                                .special_defense(132)
+                                .speed(198)
+                                .health_points(262)
+                                .image("null/api/v1/imagepool/392.png")
+                                .species_name("Orang-utan")
+                                .species_content(createTestSpecies())
                                 .build();
         }
 

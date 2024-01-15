@@ -32,8 +32,8 @@ public class ImageDataController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        boolean operationSuccessful = imageDataService.storeFile(file);
-        if (operationSuccessful) {
+        Optional<ImageData> uploadedImage = imageDataService.storeFile(file);
+        if (uploadedImage.isPresent()) {
             return new ResponseEntity<>(HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -42,9 +42,9 @@ public class ImageDataController {
 
     @PutMapping
     public ResponseEntity<Void> modifyImage(@RequestParam("image") MultipartFile file) {
-        boolean operationSuccessful = imageDataService.storeFile(file);
-        if (operationSuccessful) {
-            return new ResponseEntity<>(HttpStatus.CREATED);
+        Optional<ImageData> modifiedImage = imageDataService.storeFile(file);
+        if (modifiedImage.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
