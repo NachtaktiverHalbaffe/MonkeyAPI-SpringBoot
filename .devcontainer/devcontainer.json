@@ -35,7 +35,9 @@
 				"developersoapbox.vscode-springboot-snippets",
 				//Postgres
 				"mtxr.sqltools",
-				"mtxr.sqltools-driver-pg"
+				"mtxr.sqltools-driver-pg",
+				//Utils
+				"gruntfuggly.todo-tree"
 			]
 		}
 	},
