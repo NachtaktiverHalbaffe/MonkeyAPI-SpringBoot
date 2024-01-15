@@ -8,7 +8,7 @@ It's a project to learn Spring and experiment with Spring Boot, so the Applicati
 
 At it's core, the application stores and provides famous monkeys from real life, media etc. For this purpose a API is build. As a bonus, the species of that monkey is also contained in the data base and linked to the concrete monkey. This species data is fetched from an external API if not present. All this is build as an REST-API
 
-In future, there could be some added usecases like randomly generating monkeys etc.
+In future, there could be some added usecases like randomly generating monkeys etc., let monkeys fight each other like in pokemon etc.
 
 # Core Tech Stack
 - Spring Boot 3 with following configuration:
@@ -24,10 +24,10 @@ In future, there could be some added usecases like randomly generating monkeys e
 
 
 # Roadmap
-  - [ ]  Core Rest API
+  - [x]  Core Rest API
   - [ ]  Testing
-  - [ ]  External API as datasource
-  - [ ]  Image as property
+  - [x]  External API as datasource
+  - [x]  Image as property
   - [ ]  Documentation generation
   - [ ]  Spring Security (mainly authorization)
 
