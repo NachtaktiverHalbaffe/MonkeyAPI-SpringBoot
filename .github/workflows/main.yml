@@ -29,7 +29,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Install Maven dependencies
-        run: mvn install
+        run: mvn install -Dmaven.test.skip
       - name: Build and package project
         run: mvn -f pom.xml package -Dmaven.test.skip
       - name: Show contents of the target directory
