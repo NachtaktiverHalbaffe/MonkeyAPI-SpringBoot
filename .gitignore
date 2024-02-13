@@ -1,8 +1,15 @@
 HELP.md
-target/
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/target/classes
+/target/generated-test-sources
+/target/generated-sources
+/target/maven-archiver
+/target/maven-status
+/target/surefire-reports
+/target/test-classes
 
 ### STS ###
 .apt_generated
@@ -33,7 +40,6 @@ build/
 #.vscode/
 
 ### Maven ###
-target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
