@@ -1,4 +1,4 @@
-name: Build 
+name: Build Docker image and Deploy it
 on:
   pull_request:
     branches: [ main ]
@@ -39,21 +39,8 @@ jobs:
         with:
           name: jar
           path: ./target/monkeyapi-0.0.1-SNAPSHOT.jar
-
-  release:
-    name: Create Github release
-    needs: [project-build]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v3
+      - name: publish to registry
+        uses: pennsignals/publish_docker-compose@v0.1.0
         with:
-          name: jar
-          path: build
-      - uses: marvinpinto/action-automatic-releases@latest
-        with:
-            repo_token: "${{ secrets.GITHUB_TOKEN }}"
-            automatic_release_tag: "latest"
-            prerelease: false
-            title: "Development Build"
-            files: |
-              build/monkeyapi-0.0.1-SNAPSHOT.jar
+          docker_compose: 'docker-compose.yml' # required
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
